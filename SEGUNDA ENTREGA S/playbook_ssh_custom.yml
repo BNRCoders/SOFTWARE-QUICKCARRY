@@ -1,9 +1,0 @@
----
-- name: Ejecutar ssh_custom.sh en localhost
-  hosts: localhost
-  connection: local
-
-  tasks:
-    - name: Ejecutar el script de ssh personalizado
-      command: sh /root/ssh_custom.sh  
-
