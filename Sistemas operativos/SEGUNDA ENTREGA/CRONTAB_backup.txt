@@ -1,0 +1,5 @@
+0 0 1 * * /root/backup_script scripts_bashrc #CADA 1 MES
+
+0 0 */21 * * /root/backup_script.sh ssh  #CADA 3 SEMANAS
+
+*/5 * * * * /root/backup_script.sh bd #CADA 5 MINUTOS
