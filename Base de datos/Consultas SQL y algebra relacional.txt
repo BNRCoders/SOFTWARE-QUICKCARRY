@@ -1,0 +1,26 @@
+SELECT * FROM QUICKCARRY.Paquete;
+Álgebra relacional: π(Paquete)
+
+SELECT * FROM QUICKCARRY.Carga;
+Álgebra relacional: π(Carga)
+
+SELECT * FROM QUICKCARRY.Almacenes_CRECOM;
+Álgebra relacional: π(Almacenes_CRECOM)
+
+SELECT * FROM QUICKCARRY.Lote;
+Álgebra relacional: π(Lote)
+
+SELECT * FROM QUICKCARRY.Almacenes_QUICKCARRY;
+Álgebra relacional: π(Almacenes_QUICKCARRY)
+
+SELECT * FROM QUICKCARRY.Camion;
+Álgebra relacional: π(Camion)
+
+SELECT * FROM QUICKCARRY.Camioneta;
+Álgebra relacional: π(Camioneta)
+
+SELECT * FROM QUICKCARRY.Destino Final;
+Álgebra relacional: π(Destino_Final)
+
+SELECT * FROM QUICKCARRY.Agencias_QUICKCARRY;
+Álgebra relacional: π(Agencias_QUICKCARRY)
