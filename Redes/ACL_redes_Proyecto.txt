@@ -1,0 +1,21 @@
+ALMACEN:
+
+interface fastethernet 0/0
+ip access-group 101 in
+access-list 101 permit 192.168.1.2 0.0.0.255 host 192.168.1.1 eq 3306
+access-list 101 deny ip any any
+
+QUICKCARRY:
+
+interface fastethernet 0/0
+ip access-group 101 in
+access-list 101 permit 192.168.2.2 0.0.0.255 host 192.168.2.1 eq 3306
+access-list 101 permit 192.168.2.2 0.0.0.255 host 192.168.2.1 eq 22
+access-list 101 permit 192.168.2.3 0.0.0.255 host 192.168.2.1 eq 3306
+access-list 101 permit 192.168.2.4 0.0.0.255 host 192.168.2.1 eq 3306
+access-list 101 deny ip any any
+
+
+
+
+
