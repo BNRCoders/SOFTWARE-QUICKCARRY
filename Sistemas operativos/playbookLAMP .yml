@@ -1,0 +1,22 @@
+---
+- name: Instalar paquetes LAMP
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Instalar Apache
+      yum:
+        name: httpd
+        state: present
+
+    - name: Iniciar servicio de Apache
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+
+    - name: Instalar repositorio EPEL
+      yum:
+        name: epel-release
+        state: present
+
+     
