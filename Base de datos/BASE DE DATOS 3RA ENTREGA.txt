@@ -1,0 +1,168 @@
+USE bnrcoders;
+
+-- Crear la tabla de usuarios
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_usuario VARCHAR(50) NOT NULL,
+    contrasena VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE admin (
+    id INT  PRIMARY KEY,
+    nombre_usuario VARCHAR(50) NOT NULL,
+    contrasena VARCHAR(255) NOT NULL,
+    FOREIGN KEY (id) REFERENCES usuarios(id)
+);
+
+CREATE TABLE almacenero (
+    id INT PRIMARY KEY,
+    nombre_usuario VARCHAR(50) NOT NULL,
+    contrasena VARCHAR(255) NOT NULL,
+    FOREIGN KEY (id) REFERENCES usuarios(id)
+);
+
+CREATE TABLE camionero (
+    id INT PRIMARY KEY,
+    nombre_usuario VARCHAR(50) NOT NULL,
+    contrasena VARCHAR(255) NOT NULL,
+    FOREIGN KEY (id) REFERENCES usuarios(id)
+);
+
+CREATE TABLE cliente (
+    id INT PRIMARY KEY,
+    nombre_usuario VARCHAR(50) NOT NULL,
+    contrasena VARCHAR(255) NOT NULL,
+    cedula VARCHAR(255) NOT NULL,
+    FOREIGN KEY (id) REFERENCES usuarios(id)
+);
+
+
+CREATE TABLE Almacen (
+    id_Almacen INT AUTO_INCREMENT PRIMARY KEY,
+    Capacidad_M3 DECIMAL(10, 2),
+    Capacidad_KG DECIMAL(10, 2),
+    Direccion VARCHAR(255)
+);
+
+CREATE TABLE Almacen_quickcarry (
+    id_Almacen INT PRIMARY KEY,
+    id_interno INT UNIQUE,
+    Capacidad_M3 DECIMAL(10, 2),
+    Capacidad_KG DECIMAL(10, 2),
+    Direccion VARCHAR(255),
+    FOREIGN KEY (id_Almacen) REFERENCES Almacen(id_Almacen)
+);
+
+CREATE TABLE Almacen_crecom (
+    id_Almacen INT PRIMARY KEY,
+    id_interno INT UNIQUE,
+    Capacidad_M3 DECIMAL(10, 2),
+    Capacidad_KG DECIMAL(10, 2),
+    Direccion VARCHAR(255),
+    FOREIGN KEY (id_Almacen) REFERENCES Almacen(id_Almacen)
+); 
+
+CREATE TABLE Vehiculo (
+    matricula VARCHAR(10) UNIQUE PRIMARY KEY,
+    capacidad_M3 DECIMAL(10, 2),
+    capacidad_KG DECIMAL(10, 2)
+    
+);
+
+CREATE TABLE camion (
+    matricula VARCHAR(10) UNIQUE PRIMARY KEY,
+    capacidad_M3 DECIMAL(10, 2),
+    capacidad_KG DECIMAL(10, 2),
+    FOREIGN KEY (matricula) REFERENCES Vehiculo(matricula)
+);
+
+CREATE TABLE camioneta (
+    matricula VARCHAR(10) UNIQUE PRIMARY KEY,
+    capacidad_M3 DECIMAL(10, 2),
+    capacidad_KG DECIMAL(10, 2),
+    FOREIGN KEY (matricula) REFERENCES Vehiculo(matricula)
+); 
+
+
+CREATE TABLE agencia_quickcarry (
+
+   id_agencia INT UNIQUE PRIMARY KEY,
+   direccion VARCHAR(255)
+);
+
+CREATE TABLE Lote (
+    id_lote INT AUTO_INCREMENT UNIQUE PRIMARY KEY,
+Peso_KG DECIMAL (10, 2),
+Volumen_M3 DECIMAL (10, 2),
+    estado VARCHAR(255)
+    
+    
+);
+
+CREATE TABLE Paquete (
+    id_paquete INT AUTO_INCREMENT UNIQUE PRIMARY KEY,
+    Peso_KG DECIMAL(10, 2),
+    Volumen_M3 DECIMAL(10, 2),
+    estado VARCHAR(255)
+);
+
+CREATE TABLE cliente_paquete (
+    id_paquete INT,
+    id INT,
+    direccion VARCHAR(255),
+    PRIMARY KEY (id_paquete, id),
+    FOREIGN KEY (id_paquete) REFERENCES Paquete(id_paquete),
+    FOREIGN KEY (id) REFERENCES cliente(id)
+);
+
+
+CREATE TABLE lote_paquete (
+id_paquete INT,
+id_lote INT,
+PRIMARY KEY (id_paquete, id_lote),
+FOREIGN KEY (id_paquete) REFERENCES Paquete(id_paquete),
+FOREIGN KEY (id_lote) REFERENCES Lote(id_lote) );
+
+CREATE TABLE lote_camion (
+id_lote INT,
+matricula VARCHAR(10),
+
+hora_salida VARCHAR(255),
+hora_llegada VARCHAR(255),
+fechasalida VARCHAR(255),
+PRIMARY KEY (id_lote, matricula),
+FOREIGN KEY (matricula) REFERENCES Camion(matricula),
+ FOREIGN KEY (id_lote) REFERENCES Lote(id_lote) );
+
+CREATE TABLE lote_camioneta (
+id_lote INT,
+matricula VARCHAR(10),
+hora_salida VARCHAR(255),
+hora_llegada VARCHAR(255),
+fechasalida VARCHAR(255),
+id_agencia INT UNIQUE PRIMARY KEY,
+FOREIGN KEY (matricula) REFERENCES Camioneta(matricula),
+FOREIGN KEY (id_lote) REFERENCES Lote(id_lote) );
+
+
+CREATE TABLE lote_agencia (
+id_lote INT ,
+id_agencia INT,
+PRIMARY KEY (id_lote, id_agencia),
+FOREIGN KEY (id_agencia) REFERENCES agencia_quickcarry(id_agencia),
+FOREIGN KEY (id_lote) REFERENCES Lote(id_lote));
+
+
+CREATE TABLE cliente_agencia(
+id INT,
+id_agencia INT,
+PRIMARY KEY (id, id_agencia),
+FOREIGN KEY (id_agencia) REFERENCES agencia_quickcarry(id_agencia),
+FOREIGN KEY (id) REFERENCES cliente(id)
+);
+
+
+
+
+
+

@@ -1,0 +1,43 @@
+
+
+Insertar nuevo usuario tipo admin:
+
+INSERT INTO usuarios (nombre_usuario, contrasena) VALUES ('admin', 'admin');
+
+SET @last_user_id = LAST_INSERT_ID();
+
+INSERT INTO admin (id, nombre_usuario, contrasena) VALUES (@last_user_id, 'admin', 'admin');
+
+
+
+Insertar una nueva agencia departamental:
+
+INSERT INTO agencia_quickcarry (id_agencia, direccion) VALUES
+(1, 'Av. Rivera 1789');
+
+
+Insertar un nuevo paquete:
+
+INSERT INTO Paquete (Peso_KG, Volumen_M3, estado) VALUES
+(10.00, 2.00, 'pendiente');
+
+
+Insertar nuevo lote:
+
+INSERT INTO Lote (Peso_KG, Volumen_M3, estado) VALUES
+(0, 0, 'Pendiente');
+
+
+
+Asignacion de un paquete a un lote:
+
+INSERT INTO lote_paquete (id_paquete, id_lote) VALUES
+(1, 1);
+
+(Los id son extraidos mediante la aplicacion, 
+consultando en c# el id del registro que seleccionamos 
+en la lista de lotes y productos guardando cada id en 
+una variable {id_lote}, {id_paquete}.)
+
+
+

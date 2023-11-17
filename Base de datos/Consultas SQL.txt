@@ -1,0 +1,40 @@
+Consulta para Obtener Información de Cliente, Paquete y Lote:
+
+SELECT c.nombre_usuario AS cliente, p.id_paquete, l.id_lote
+FROM cliente c
+JOIN cliente_paquete cp ON c.id = cp.id
+JOIN paquete p ON cp.id_paquete = p.id_paquete
+JOIN lote_paquete lp ON p.id_paquete = lp.id_paquete
+JOIN lote l ON lp.id_lote = l.id_lote;
+
+
+Consulta para Obtener Información de Agencias, Lotes y Camiones:
+
+SELECT a.direccion AS agencia_direccion, l.id_lote, lc.matricula
+FROM agencia_quickcarry a
+JOIN lote_agencia la ON a.id_agencia = la.id_agencia
+JOIN lote l ON la.id_lote = l.id_lote
+JOIN lote_camion lc ON l.id_lote = lc.id_lote;
+
+
+Consulta para Obtener Información de Cliente, Paquete y Agencia:
+
+SELECT c.nombre_usuario AS cliente, p.id_paquete, a.direccion AS direccion_agencia
+FROM cliente c
+JOIN cliente_paquete cp ON c.id = cp.id
+JOIN paquete p ON cp.id_paquete = p.id_paquete
+JOIN lote_paquete lp ON p.id_paquete = lp.id_paquete
+JOIN lote_agencia la ON lp.id_lote = la.id_lote
+JOIN agencia_quickcarry a ON la.id_agencia = a.id_agencia;
+
+
+
+
+Consulta para Obtener Información de Camiones, Lotes y Clientes:
+
+SELECT lc.matricula, l.id_lote, c.nombre_usuario AS cliente
+FROM lote_camion lc
+JOIN lote l ON lc.id_lote = l.id_lote
+JOIN lote_paquete lp ON l.id_lote = lp.id_lote
+JOIN cliente_paquete cp ON lp.id_paquete = cp.id_paquete
+JOIN cliente c ON cp.id = c.id;
